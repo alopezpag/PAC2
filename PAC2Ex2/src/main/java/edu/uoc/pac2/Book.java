@@ -176,11 +176,7 @@ public class Book {
     }
 
     public boolean isWrittenBy(String authorName) {
-        if (authorName != null && author.equalsIgnoreCase(authorName)) {
-            return true;
-        } else {
-            return false;
-        }
+        return author.equalsIgnoreCase(authorName);
     }
 
     public boolean isClassic() {
