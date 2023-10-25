@@ -74,23 +74,21 @@ public class Book {
         return publisher;
     }
 
-    //TODO
     public void setPublisher(String publisher) {
-        // Comprovar si el publisher és null
+        // check if publisher is null
         if (publisher == null) {
             System.out.println("[ERROR] Invalid publisher format.");
             return;
         }
 
-        // Crear un patró regex per comprovar si el publisher conté només caràcters permesos
+        // Create a regex pattern to check if the publisher contains only allowed characters
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9 ,.()]+$");
 
-        // Comprovar si el publisher coincideix amb el patró regex
+        // Check if the publisher matches the regex pattern
         if (pattern.matcher(publisher).matches()) {
-            // Si el format és correcte, assignar el valor a la propietat publisher
+            // If the format is correct, assign the value to the publisher property
             this.publisher = publisher;
         } else {
-            // Si el format no és correcte, mostrar un missatge d'error
             System.out.println("[ERROR] Invalid publisher format.");
         }
     }
@@ -166,7 +164,6 @@ public class Book {
         return validLanguages;
     }
 
-    //TODO
     public boolean isCheaperThan(Book otherBook) {
         if (otherBook != null) {
             return this.price < otherBook.price;

@@ -33,21 +33,12 @@ public class Book {
         return title;
     }
 
-    public void setTitle(String title) {
-        //TODO
-        try {
-            if (title == null) {
-                throw new Exception("[ERROR] Invalid title format.");
-            }
-        } catch (Exception e) {
-
-        }
-
+    public void setTitle(String title) throws Exception {
         //regular expression
         if (title != null && title.matches("^[a-zA-Z\\s-]+$")) {
             this.title = title;
         } else {
-            System.out.println("[ERROR] Invalid title format.");
+            throw new Exception("[ERROR] Invalid title format.");
         }
     }
 
@@ -55,11 +46,11 @@ public class Book {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(String author) throws Exception {
         if (!isEmpty(author)) {
             this.author = author;
         } else {
-            System.out.println("[ERROR] Author cannot be empty.");
+            throw new Exception("[ERROR] Author cannot be empty.");
         }
     }
 
@@ -67,11 +58,11 @@ public class Book {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(String genre) throws Exception {
         if (!isEmpty(genre)) {
             this.genre = genre;
         } else {
-            System.out.println("[ERROR] Genre cannot be empty.");
+            throw new Exception("[ERROR] Genre cannot be empty.");
         }
     }
 
@@ -83,55 +74,48 @@ public class Book {
         return publisher;
     }
 
-    //TODO
-    public void setPublisher(String publisher) {
-        try {
-            // Comprovar si el publisher és null
-            if (publisher == null) {
-                throw new Exception("[ERROR] Invalid publisher format.");
-            }
-            // Crear un patró regex per comprovar si el publisher conté només caràcters permesos
-            Pattern pattern = Pattern.compile("^[a-zA-Z0-9 ,.()]+$");
-
-            // Comprovar si el publisher coincideix amb el patró regex
-            if (pattern.matcher(publisher).matches()) {
-                // Si el format és correcte, assignar el valor a la propietat publisher
-                this.publisher = publisher;
-            } else {
-                // Si el format no és correcte, mostrar un missatge d'error
-                throw new Exception("[ERROR] Invalid publisher format.");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    public void setPublisher(String publisher) throws Exception {
+        // check if publisher is null
+        if (publisher == null) {
+            throw new Exception("[ERROR] Invalid publisher format.");
         }
+        // Create a regex pattern to check if the publisher contains only allowed characters
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9 ,.()]+$");
 
+        // Check if the publisher matches the regex pattern
+        if (pattern.matcher(publisher).matches()) {
+            // If the format is correct, assign the value to the publisher property
+            this.publisher = publisher;
+        } else {
+            // If the format is not correct, throw error
+            throw new Exception("[ERROR] Invalid publisher format.");
+        }
     }
 
     public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) throws Exception {
         LocalDate now = LocalDate.now();
         LocalDate twoHundredYearsAgo = now.minusYears(200);
 
         if (releaseDate != null && !releaseDate.isAfter(now) && !releaseDate.isBefore(twoHundredYearsAgo)) {
             this.releaseDate = releaseDate;
         } else {
-            System.out.println("[ERROR] Invalid release date. It should be within the last 200 years and not in the future.");
+            throw new Exception("[ERROR] Invalid release date. It should be within the last 200 years and not in the future.");
         }
     }
-
 
     public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(String language) throws Exception {
         if (isValidLanguage(language)) {
             this.language = language;
         } else {
-            System.out.println("[ERROR] Invalid language.");
+            throw new Exception("[ERROR] Invalid language.");
         }
     }
 
@@ -148,17 +132,17 @@ public class Book {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
+    public void setIsbn(String isbn) throws Exception {
         if (isbn != null) {
             // delete all characters except numbers
             String buffer = isbn.replaceAll("[^0-9]", "");
             if (buffer.length() == 10 || buffer.length() == 13) {
                 this.isbn = buffer;
             } else {
-                System.out.println("[ERROR] Invalid ISBN format.");
+                throw new Exception("[ERROR] Invalid ISBN format.");
             }
         } else {
-            System.out.println("[ERROR] Invalid ISBN format.");
+            throw new Exception("[ERROR] Invalid ISBN format.");
         }
     }
 
@@ -166,11 +150,11 @@ public class Book {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(double price) throws Exception {
         if (price > 0) {
             this.price = price;
         } else {
-            System.out.println("[ERROR] Price cannot be neither negative nor zero.");
+            throw new Exception("[ERROR] Price cannot be neither negative nor zero.");
         }
     }
 
@@ -178,7 +162,6 @@ public class Book {
         return validLanguages;
     }
 
-    //TODO
     public boolean isCheaperThan(Book otherBook) {
         if (otherBook != null) {
             return this.price < otherBook.price;

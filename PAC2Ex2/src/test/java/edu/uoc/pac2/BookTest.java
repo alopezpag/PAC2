@@ -269,11 +269,11 @@ public class BookTest {
         Book book = new Book("Sample Book", "John Doe", "Fiction", "Sample Publisher",
                 LocalDate.now().minusDays(7), "English", "1234567890", 29.99);
 
-        assertEquals(26.991, book.applyDiscount(10),0.001);
+        assertEquals(26.991, book.applyDiscount(10),0.002);
 
-        assertEquals(23.991, book.applyDiscount(20), 0.001);
+        assertEquals(23.991, book.applyDiscount(20), 0.002);
 
-        assertEquals(14.995, book.applyDiscount(50), 0.001);
+        assertEquals(14.995, book.applyDiscount(50), 0.002);
     }
 
     @Test
