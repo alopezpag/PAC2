@@ -1,0 +1,8 @@
+[ERROR] Invalid language.
+"[ERROR] Invalid publisher format.
+ [ERROR] Author cannot be empty.
+	\[ERROR] Invalid release date. It should be within the last 200 years and not in the future.
+[ERROR] Invalid ISBN format.
+[ERROR] Genre cannot be empty.
+3[ERROR] Price cannot be neither negative nor zero.
+[ERROR] Invalid title format.

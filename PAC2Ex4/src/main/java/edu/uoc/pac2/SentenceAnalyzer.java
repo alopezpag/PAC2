@@ -19,24 +19,38 @@ public class SentenceAnalyzer {
     }
 
     public static String reverseSentence(String input) {
-        //TODO implement
-        /*
-        reverseSentence: aquest mètode rep un paràmetre text (String),
-        la qual conté una frase i retorna aquesta mateixa frase amb l’ordre de les paraules invertit:
+        String[] words = input.split(" ");
+        StringBuilder reversedSentence = new StringBuilder();
 
-Hello, world! → world! Hello,
-         */
-
-        return "pep";
+        for (int i = words.length - 1; i >= 0; i--) {
+            reversedSentence.append(words[i]).append(" ");
+        }
+        reversedSentence.setLength(reversedSentence.length() - 1);
+        return reversedSentence.toString();
     }
 
     public static String encrypt(String plainText, int shift) {
-        //TODO implement
-        return "pep";
+        StringBuilder encryptedText = new StringBuilder();
+
+        for (int i = 0; i < plainText.length(); i++) {
+            char ch = plainText.charAt(i);
+
+            if (Character.isLowerCase(ch)) {
+                char shiftedChar = (char) (((ch - 'a' + shift) % 26 + 26) % 26 + 'a');
+                encryptedText.append(shiftedChar);
+            } else if (Character.isUpperCase(ch)) {
+                char shiftedChar = (char) (((ch - 'A' + shift) % 26 + 26) % 26 + 'A');
+                encryptedText.append(shiftedChar);
+            } else {
+                encryptedText.append(ch);
+            }
+        }
+
+        return encryptedText.toString();
     }
 
+
     public static String decrypt(String encryptedText, int shift) {
-        //TODO implement
-        return "pep";
+        return encrypt(encryptedText, -shift);
     }
 }
