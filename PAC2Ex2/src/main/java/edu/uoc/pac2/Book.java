@@ -3,6 +3,13 @@ package edu.uoc.pac2;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
+/**
+ * This class represents a book with atributes
+ *
+ * @author Arnau López Pagès
+ * @version 1.0
+ **/
+
 public class Book {
     private String title;
     private String author;
@@ -16,6 +23,17 @@ public class Book {
             "Russian", "Arabic", "Portuguese", "Italian"};
 
     //constructors
+
+    /**
+     * @param title       book title
+     * @param author      Autor del llibre
+     * @param genre       Gènere del llibre
+     * @param publisher   Editorial que ha publicat el llibre
+     * @param releaseDate Data de publicació del llibre
+     * @param language    Idioma del llibre
+     * @param isbn        Identificador del llibre
+     * @param price       Preu del llibre
+     */
     public Book(String title, String author, String genre, String publisher, LocalDate releaseDate,
                 String language, String isbn, double price) {
         this.title = title;
@@ -29,10 +47,23 @@ public class Book {
     }
 
     //getters & setters
+
+    /**
+     * Rreturns book title.
+     *
+     * @return book title.
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets book title and throws an exception if its format is incorrect.
+     * .
+     *
+     * @param title book title.
+     * @throws Exception [ERROR] Invalid title format.
+     */
     public void setTitle(String title) throws Exception {
         //regular expression
         if (title != null && title.matches("^[a-zA-Z\\s-]+$")) {
@@ -42,10 +73,21 @@ public class Book {
         }
     }
 
+    /**
+     * Returns book author.
+     *
+     * @return book author.
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets the author of the book. Throws an exception if the author is empty.
+     *
+     * @param author Author of the book
+     * @throws Exception If author is empty
+     */
     public void setAuthor(String author) throws Exception {
         if (!isEmpty(author)) {
             this.author = author;
@@ -54,10 +96,21 @@ public class Book {
         }
     }
 
+    /**
+     * Returns the genre of the book.
+     *
+     * @return The genre of the book.
+     */
     public String getGenre() {
         return genre;
     }
 
+    /**
+     * Sets the genre of the book. Throws an exception if the genre is empty.
+     *
+     * @param genre Genre of the book.
+     * @throws Exception If genre is empty.
+     */
     public void setGenre(String genre) throws Exception {
         if (!isEmpty(genre)) {
             this.genre = genre;
@@ -66,14 +119,26 @@ public class Book {
         }
     }
 
+
     private boolean isEmpty(String str) {
         return str == null || str.trim().isEmpty();
     }
 
+    /**
+     * Returns the publisher of the book.
+     *
+     * @return The publisher of the book.
+     */
     public String getPublisher() {
         return publisher;
     }
 
+    /**
+     * Sets the publisher of the book. Validates the format of the publisher.
+     *
+     * @param publisher Publisher of the book.
+     * @throws Exception If publisher format is invalid.
+     */
     public void setPublisher(String publisher) throws Exception {
         // check if publisher is null
         if (publisher == null) {
@@ -92,10 +157,21 @@ public class Book {
         }
     }
 
+    /**
+     * Returns the release date of the book.
+     *
+     * @return The release date of the book.
+     */
     public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
+    /**
+     * Sets the release date of the book. Ensures the release date is valid.
+     *
+     * @param releaseDate Release date of the book.
+     * @throws Exception If release date is not within the last 200 years and not in the future.
+     */
     public void setReleaseDate(LocalDate releaseDate) throws Exception {
         LocalDate now = LocalDate.now();
         LocalDate twoHundredYearsAgo = now.minusYears(200);
@@ -107,10 +183,21 @@ public class Book {
         }
     }
 
+    /**
+     * Returns the language of the book.
+     *
+     * @return The language of the book.
+     */
     public String getLanguage() {
         return language;
     }
 
+    /**
+     * Sets the language of the book. Validates if the language is among the accepted languages.
+     *
+     * @param language Language of the book.
+     * @throws Exception If language is invalid.
+     */
     public void setLanguage(String language) throws Exception {
         if (isValidLanguage(language)) {
             this.language = language;
@@ -128,10 +215,21 @@ public class Book {
         return false;
     }
 
+    /**
+     * Returns the ISBN of the book.
+     *
+     * @return The ISBN of the book.
+     */
     public String getIsbn() {
         return isbn;
     }
 
+    /**
+     * Sets the ISBN of the book. Validates the ISBN format.
+     *
+     * @param isbn ISBN of the book.
+     * @throws Exception If ISBN format is invalid.
+     */
     public void setIsbn(String isbn) throws Exception {
         if (isbn != null) {
             // delete all characters except numbers
@@ -146,10 +244,21 @@ public class Book {
         }
     }
 
+    /**
+     * Returns the price of the book.
+     *
+     * @return The price of the book.
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * Sets the price of the book. Ensures the price is valid.
+     *
+     * @param price Price of the book.
+     * @throws Exception If price is negative or zero.
+     */
     public void setPrice(double price) throws Exception {
         if (price > 0) {
             this.price = price;
@@ -158,10 +267,21 @@ public class Book {
         }
     }
 
+    /**
+     * Returns the valid languages for the books.
+     *
+     * @return Array of valid languages.
+     */
     public String[] getValidLanguages() {
         return validLanguages;
     }
 
+    /**
+     * Checks if this book is cheaper than another book.
+     *
+     * @param otherBook The other book to compare with
+     * @return true if this book is cheaper than otherBook, false otherwise
+     */
     public boolean isCheaperThan(Book otherBook) {
         if (otherBook != null) {
             return this.price < otherBook.price;
@@ -170,15 +290,33 @@ public class Book {
         }
     }
 
+    /**
+     * Checks if this book was written by a specific author.
+     *
+     * @param authorName The name of the author to check against
+     * @return true if the book was written by the given author, false otherwise
+     */
     public boolean isWrittenBy(String authorName) {
         return author.equalsIgnoreCase(authorName);
     }
 
+    /**
+     * Checks if the book is considered a classic.
+     * A classic is defined as a book released more than 50 years ago.
+     *
+     * @return true if the book is a classic, false otherwise
+     */
     public boolean isClassic() {
         LocalDate fiftyYearsAgo = LocalDate.now().minusYears(50);
         return releaseDate.isBefore(fiftyYearsAgo);
     }
 
+    /**
+     * Applies a discount to the price of the book and returns the discounted price.
+     *
+     * @param discountPercentage The percentage of discount to apply
+     * @return The discounted price
+     */
     public double applyDiscount(double discountPercentage) {
         if (discountPercentage >= 0 && discountPercentage <= 100) {
             double discountAmount = (discountPercentage / 100) * price;
