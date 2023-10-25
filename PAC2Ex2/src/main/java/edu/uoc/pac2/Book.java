@@ -34,6 +34,15 @@ public class Book {
     }
 
     public void setTitle(String title) {
+        //TODO
+        try {
+            if (title == null) {
+                throw new Exception("[ERROR] Invalid title format.");
+            }
+        } catch (Exception e) {
+
+        }
+
         //regular expression
         if (title != null && title.matches("^[a-zA-Z\\s-]+$")) {
             this.title = title;
@@ -76,23 +85,26 @@ public class Book {
 
     //TODO
     public void setPublisher(String publisher) {
-        // Comprovar si el publisher és null
-        if (publisher == null) {
-            System.out.println("[ERROR] Invalid publisher format.");
-            return;
+        try {
+            // Comprovar si el publisher és null
+            if (publisher == null) {
+                throw new Exception("[ERROR] Invalid publisher format.");
+            }
+            // Crear un patró regex per comprovar si el publisher conté només caràcters permesos
+            Pattern pattern = Pattern.compile("^[a-zA-Z0-9 ,.()]+$");
+
+            // Comprovar si el publisher coincideix amb el patró regex
+            if (pattern.matcher(publisher).matches()) {
+                // Si el format és correcte, assignar el valor a la propietat publisher
+                this.publisher = publisher;
+            } else {
+                // Si el format no és correcte, mostrar un missatge d'error
+                throw new Exception("[ERROR] Invalid publisher format.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
-        // Crear un patró regex per comprovar si el publisher conté només caràcters permesos
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9 ,.()]+$");
-
-        // Comprovar si el publisher coincideix amb el patró regex
-        if (pattern.matcher(publisher).matches()) {
-            // Si el format és correcte, assignar el valor a la propietat publisher
-            this.publisher = publisher;
-        } else {
-            // Si el format no és correcte, mostrar un missatge d'error
-            System.out.println("[ERROR] Invalid publisher format.");
-        }
     }
 
     public LocalDate getReleaseDate() {
