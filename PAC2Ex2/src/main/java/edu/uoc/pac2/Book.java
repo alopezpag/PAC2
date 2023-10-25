@@ -4,21 +4,56 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 /**
- * This class represents a book with atributes
+ * Represents a book with attributes like title, author, genre, etc.
  *
  * @author Arnau López Pagès
  * @version 1.0
- **/
-
+ */
 public class Book {
+
+    /**
+     * Title of the book.
+     */
     private String title;
+
+    /**
+     * Author of the book.
+     */
     private String author;
+
+    /**
+     * Genre of the book.
+     */
     private String genre;
+
+    /**
+     * Publisher of the book.
+     */
     private String publisher;
+
+    /**
+     * Release date of the book.
+     */
     private LocalDate releaseDate;
+
+    /**
+     * Language in which the book is written.
+     */
     private String language;
+
+    /**
+     * ISBN identifier of the book.
+     */
     private String isbn;
+
+    /**
+     * Price of the book.
+     */
     private double price;
+
+    /**
+     * Array containing the valid languages for books.
+     */
     private final String[] validLanguages = new String[]{"English", "Spanish", "French", "German", "Chinese", "Japanese",
             "Russian", "Arabic", "Portuguese", "Italian"};
 
