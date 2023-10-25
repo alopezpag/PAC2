@@ -154,7 +154,6 @@ public class Book {
         }
     }
 
-
     private boolean isEmpty(String str) {
         return str == null || str.trim().isEmpty();
     }
